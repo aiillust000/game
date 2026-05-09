@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Illustration Breaker</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="app">
+      <section id="titleScreen" class="screen title-screen">
+        <button id="fullscreenButton" class="fullscreen-button" type="button" title="全画面表示">全画面</button>
+        <div class="title-copy">
+          <p class="kicker">Browser Breakout</p>
+          <h1>Illustration Breaker</h1>
+          <p class="lead">画像を削って絵を開くモードと、増え続けるブロックに挑むエンドレスモード。</p>
+        </div>
+
+        <div class="difficulty-panel" aria-label="難易度選択">
+          <button class="difficulty-button" data-difficulty="easy">
+            <span>イージー</span>
+            <small>バンパー拡大 + 下壁</small>
+          </button>
+          <button class="difficulty-button active" data-difficulty="normal">
+            <span>ノーマル</span>
+            <small>バンパー1.2倍</small>
+          </button>
+          <button class="difficulty-button" data-difficulty="hard">
+            <span>ハード</span>
+            <small>従来仕様</small>
+          </button>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-button" data-mode="illustration">
+            <span>イラストブロック崩し</span>
+            <small>画像Aを背景、画像Bをブロック面として使います</small>
+          </button>
+          <button class="mode-button" data-mode="endless">
+            <span>エンドレスブロック崩し</span>
+            <small>時間経過で列が増えるスコアアタック</small>
+          </button>
+          <button class="mode-button" data-mode="simple">
+            <span>シンプルブロック崩し</span>
+            <small>10ステージから好きなものを選んで攻略します</small>
+          </button>
+        </div>
+      </section>
+
+      <section id="stageSelectScreen" class="screen stage-select-screen hidden">
+        <div class="panel stage-panel">
+          <p class="kicker">Simple Mode</p>
+          <h2>ステージ選択</h2>
+          <div id="stageGrid" class="stage-grid" aria-label="シンプルブロック崩し ステージ選択"></div>
+          <div class="actions">
+            <button id="backFromStageSelect" class="ghost-button">戻る</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="setupScreen" class="screen setup-screen hidden">
+        <div class="panel">
+          <div>
+            <p class="kicker">Illustration Mode</p>
+            <h2>画像を選択</h2>
+            <p class="muted">縦横比 2:3 の縦長画像がおすすめです。比率が違う場合は高さに合わせて表示されます。</p>
+          </div>
+          <label class="file-box">
+            <span>画像A 背景</span>
+            <input id="imageAInput" type="file" accept="image/*">
+          </label>
+          <label class="file-box">
+            <span>画像B ブロック</span>
+            <input id="imageBInput" type="file" accept="image/*">
+          </label>
+          <div class="actions">
+            <button id="backFromSetup" class="ghost-button">戻る</button>
+            <button id="startIllustration" class="primary-button" disabled>開始</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="gameScreen" class="game-screen hidden">
+        <canvas id="gameCanvas" width="900" height="1350" aria-label="ブロック崩しゲーム"></canvas>
+        <aside class="hud">
+          <div>
+            <span>MODE</span>
+            <strong id="hudMode">-</strong>
+          </div>
+          <div>
+            <span>LEVEL</span>
+            <strong id="hudLevel">1</strong>
+          </div>
+          <div>
+            <span>BROKEN</span>
+            <strong id="hudBroken">0</strong>
+          </div>
+          <div>
+            <span>TIME</span>
+            <strong id="hudTime">00:00</strong>
+          </div>
+          <div>
+            <span>LIFE</span>
+            <strong id="hudLives">5</strong>
+          </div>
+          <div>
+            <span>POWER</span>
+            <strong id="hudPower">なし</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section id="resultScreen" class="screen result-screen hidden">
+        <div class="panel result-panel">
+          <p class="kicker">Result</p>
+          <h2 id="resultTitle">ゲーム終了</h2>
+          <div class="result-content">
+            <img id="resultImage" class="clear-art hidden" alt="クリア画像">
+            <dl class="result-list">
+              <div><dt>難易度</dt><dd id="resultDifficulty">ノーマル</dd></div>
+              <div><dt>破壊数</dt><dd id="resultBroken">0</dd></div>
+              <div><dt>プレイ時間</dt><dd id="resultTime">00:00</dd></div>
+              <div><dt>最終レベル</dt><dd id="resultLevel">1</dd></div>
+            </dl>
+          </div>
+          <div class="actions">
+            <button id="playAgain" class="primary-button">もう一度</button>
+            <button id="toTitle" class="ghost-button">タイトルへ</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
