@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Element Breaker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section id="selectScreen" class="screen select-screen">
+      <div class="select-board">
+        <div class="select-copy select-column">
+          <p class="eyebrow">Character Select</p>
+          <h1 id="selectName">彩</h1>
+          <p id="selectRole" class="select-role">ATTACKER</p>
+          <p id="selectDescription">黒い炎を操り、爆発での範囲攻撃を得意とするアタッカー。</p>
+          <p id="selectSubDescription" class="select-sub-description">ピンチ時はバンパー全体がクリティカルに！</p>
+          <div id="selectStatList" class="select-stat-list"></div>
+          <p id="selectCritical" class="select-critical">クリティカル判定 横</p>
+          <div class="character-options">
+            <button class="character-option active" data-character="aya">
+              <span>彩</span>
+              <small>Black Flame</small>
+            </button>
+            <button class="character-option" data-character="mew">
+              <span>ミュー</span>
+              <small>Element Witch</small>
+            </button>
+            <button class="character-option" data-character="hitomi">
+              <span>ひとみ</span>
+              <small>Frost Clock</small>
+            </button>
+            <button class="character-option" data-character="seina">
+              <span>星奈</span>
+              <small>Gravity Star</small>
+            </button>
+          </div>
+          <button id="startButton" class="primary-button">モード選択へ</button>
+        </div>
+        <div class="select-art-wrap">
+          <img id="selectArt" class="select-art" src="assets/aya.png" alt="選択中キャラクターの立ち絵">
+        </div>
+        <aside class="select-skill-panel">
+          <p class="eyebrow">Skill List</p>
+          <div id="selectSkillList" class="select-skill-list"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="modeScreen" class="screen mode-screen hidden">
+      <div class="mode-board">
+        <div class="mode-copy">
+          <p class="eyebrow">Game Mode</p>
+          <h1>モード選択</h1>
+          <p>選択したキャラクターで挑戦するゲームモードを選びます。</p>
+        </div>
+        <div class="mode-options">
+          <button id="standardModeButton" class="mode-option active" data-mode="standard">
+            <span>スタンダード</span>
+            <small>5WAVE突破までの合計スコアを競う基本モード。</small>
+          </button>
+          <button id="endlessModeButton" class="mode-option" data-mode="endless">
+            <span>エンドレス</span>
+            <small>降り続けるブロックを破壊し、到達WAVEと破壊数を競うモード。</small>
+          </button>
+          <button id="tutorialModeButton" class="mode-option" data-mode="tutorial">
+            <span>チュートリアル</span>
+            <small>操作説明を見ながら5WAVEで基本操作を練習するモード。</small>
+          </button>
+        </div>
+        <div class="mode-actions">
+          <button id="modeBackButton" class="secondary-button">キャラ選択へ戻る</button>
+          <button id="modeStartButton" class="primary-button">選択モードで開始</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen hidden">
+      <div class="play-panel">
+        <canvas id="gameCanvas" width="960" height="720"></canvas>
+        <div id="messageLayer" class="message-layer hidden">
+          <div class="result-card">
+            <img id="resultIcon" class="result-icon" src="assets/icons/aya-icon.png" alt="使用キャラクターのアイコン">
+            <p id="resultName" class="result-name">彩</p>
+            <h2 id="messageTitle"></h2>
+            <p id="messageBody"></p>
+            <div id="resultStats" class="result-stats"></div>
+            <button id="titleButton" class="primary-button">タイトルに戻る</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="portrait-wrap">
+          <img id="portraitArt" src="assets/icons/aya-icon.png" alt="プレイヤーキャラクターのアイコン">
+        </div>
+        <div class="hud-card">
+          <div class="character-head">
+            <div>
+              <p id="characterType" class="eyebrow">Black Flame</p>
+              <h2 id="characterName">彩</h2>
+            </div>
+            <div id="waveBadge" class="badge">WAVE 1</div>
+          </div>
+          <dl class="live-stats">
+            <div><dt>LIFE</dt><dd id="lifeText">9 / 9</dd></div>
+            <div><dt>SCORE</dt><dd id="scoreText">0</dd></div>
+            <div><dt>SHOT</dt><dd id="shotText">READY</dd></div>
+            <div><dt>SKILL</dt><dd id="skillText">READY</dd></div>
+          </dl>
+        </div>
+        <div class="hud-card skills-card">
+          <h3>SKILL</h3>
+          <div id="skillDescription"></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
